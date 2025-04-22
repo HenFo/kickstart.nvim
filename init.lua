@@ -170,6 +170,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>o', 'o<Esc>')
 vim.keymap.set('n', '<leader>O', 'O<Esc>')
 
+-- disable s key so that it doesn't initiate insert mode
+vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
+
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
