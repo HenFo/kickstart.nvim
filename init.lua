@@ -213,7 +213,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  { -- Collection of various small independent plugins/modules
+  {                   -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
       -- Better Around/Inside textobjects
@@ -234,11 +234,18 @@ require('lazy').setup({
       })
 
 
+      require('mini.jump').setup()
+      require('mini.jump2d').setup({
+        mappings = {
+          start_jumping = '<leader><leader>',
+        },
+      })
+
+
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
-  },
-
+  }
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
