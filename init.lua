@@ -172,6 +172,8 @@ vim.keymap.set('n', '<leader>O', 'O<Esc>')
 
 -- disable s key so that it doesn't initiate insert mode
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
+-- activate surround with capital S in visual mode
+vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
 
 
 -- [[ Basic Autocommands ]]
