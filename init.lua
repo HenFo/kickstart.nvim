@@ -169,6 +169,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- helper keymaps
 vim.keymap.set('n', '<leader>o', 'o<Esc>')
 vim.keymap.set('n', '<leader>O', 'O<Esc>')
+vim.keymap.set('n', '<leader>I', '^')
+vim.keymap.set('n', '<leader>A', 'g_')
 
 -- disable s key so that it doesn't initiate insert mode
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
