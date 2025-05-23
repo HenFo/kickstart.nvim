@@ -177,6 +177,16 @@ vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 -- activate surround with capital S in visual mode
 vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
 
+if vim.g.vscode then
+  -- Require the VSCode API module
+  local vscode = require('vscode')
+
+  -- Map <leader>e to toggle the Explorer view
+  vim.keymap.set('n', '<leader>e', function()
+    vscode.call('workbench.view.explorer')
+  end, { noremap = true, silent = true })
+end
+
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
