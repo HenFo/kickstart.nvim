@@ -176,6 +176,8 @@ vim.keymap.set('n', '<leader>A', 'g_')
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 -- activate surround with capital S in visual mode
 vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+-- Exit insert mode
+vim.keymap.set('i', 'jj', '<Esc>', { noremap = false })
 
 if vim.g.vscode then
   -- Require the VSCode API module
