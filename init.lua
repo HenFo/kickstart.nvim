@@ -262,7 +262,58 @@ require('lazy').setup({
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        config = function()
+          require("nvim-treesitter.configs").setup({
+            textobjects = {
+              select = {
+                enable = true,
+                lookahead = true,
+                keymaps = {
+                  ["af"] = "@function.outer",
+                  ["if"] = "@function.inner",
+                  ["ac"] = "@class.outer",
+                  ["ic"] = "@class.inner",
+                },
+                include_surrounding_whitespace = true,
+              },
+            },
+          })
+        end,
+      },
+    },
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "bash",
+          "html",
+          "javascript",
+          "lua",
+          "markdown",
+          "python",
+          "typescript",
+          "vim",
+          "java",
+          "json",
+          "powershell",
+          "dockerfile",
+          "css",
+          "c_sharp"
+        },
+        highlight = { enable = true },
+        indent = { enable = true },
+        auto_install = true
+      })
+    end,
   }
+
+
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
