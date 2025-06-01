@@ -246,7 +246,8 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup({
-        highlight_duration = 5000
+        highlight_duration = 5000,
+        n_lines = 50,
       })
 
 
