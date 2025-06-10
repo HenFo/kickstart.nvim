@@ -307,7 +307,7 @@ require('lazy').setup({
           "c_sharp"
         },
         highlight = { enable = true },
-        indent = { enable = true },
+        indent = { enable = false },
         auto_install = true
       })
     end,
