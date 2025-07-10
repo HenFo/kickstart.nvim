@@ -276,12 +276,18 @@ require('lazy').setup({
                 enable = true,
                 lookahead = true,
                 keymaps = {
-                  ["af"] = "@function.outer",
-                  ["if"] = "@function.inner",
-                  ["ac"] = "@class.outer",
-                  ["ic"] = "@class.inner",
+                  ["af"]  = "@function.outer",
+                  ["if"]  = "@function.inner",
+                  ["ac"]  = "@class.outer",
+                  ["ic"]  = "@class.inner",
+                  ["aas"] = "@assignment.outer",
+                  ["ias"] = "@assignment.inner",
                 },
-                include_surrounding_whitespace = true,
+                selection_modes = {
+                  ['@function.outer'] = 'V',
+                  ['@class.outer'] = 'V',
+                },
+                include_surrounding_whitespace = false,
               },
             },
           })
