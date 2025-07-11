@@ -314,9 +314,11 @@ require('lazy').setup({
         },
         highlight = { enable = true },
         indent = { enable = false },
-        auto_install = true
+        auto_install = true,
+        playground = { enable = true },
       })
     end,
+    "nvim-treesitter/playground", -- ← This installs the playground module
   }
 
 
