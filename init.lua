@@ -169,8 +169,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- helper keymaps
 vim.keymap.set('n', '<leader>o', 'o<Esc>')
 vim.keymap.set('n', '<leader>O', 'O<Esc>')
-vim.keymap.set({'n', 'x'}, '<leader>h', '^')
-vim.keymap.set({'n', 'x'}, '<leader>l', 'g_')
+vim.keymap.set({ 'n', 'x' }, '<leader>h', '^')
+vim.keymap.set({ 'n', 'x' }, '<leader>l', 'g_')
 
 -- disable s key so that it doesn't initiate insert mode
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
@@ -276,12 +276,12 @@ require('lazy').setup({
                 enable = true,
                 lookahead = true,
                 keymaps = {
-                  ["af"]  = "@function.outer",
-                  ["if"]  = "@function.inner",
-                  ["ac"]  = "@class.outer",
-                  ["ic"]  = "@class.inner",
-                  ["aas"] = "@assignment.outer",
-                  ["ias"] = "@assignment.inner",
+                  ["af"] = "@function.outer",
+                  ["if"] = "@function.inner",
+                  ["ac"] = "@class.outer",
+                  ["ic"] = "@class.inner",
+                  ["aA"] = "@assignment.outer",
+                  ["iA"] = "@assignment.inner",
                 },
                 selection_modes = {
                   ['@function.outer'] = 'V',
