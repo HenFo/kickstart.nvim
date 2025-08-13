@@ -299,20 +299,8 @@ require('lazy').setup({
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
-          "bash",
-          "html",
-          "javascript",
           "lua",
-          "markdown",
-          "python",
-          "typescript",
           "vim",
-          "java",
-          "json",
-          "powershell",
-          "dockerfile",
-          "css",
-          "c_sharp"
         },
         highlight = { enable = true },
         indent = { enable = false },
