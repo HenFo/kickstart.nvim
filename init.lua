@@ -286,7 +286,7 @@ require('lazy').setup({
                   ["iA"] = "@assignment.inner",
                 },
                 selection_modes = {
-                  ['@function.outer'] = 'V',
+                  -- ['@function.outer'] = 'V',
                   ['@class.outer'] = 'V',
                 },
                 include_surrounding_whitespace = false,
@@ -317,10 +317,10 @@ require('lazy').setup({
         highlight = { enable = true },
         indent = { enable = false },
         auto_install = true,
-        playground = { enable = true },
+        playground = { enable = false },
       })
     end,
-    "nvim-treesitter/playground", -- ← This installs the playground module
+    -- "nvim-treesitter/playground", -- ← This installs the playground module
   },
   {
     'vscode-neovim/vscode-multi-cursor.nvim',
