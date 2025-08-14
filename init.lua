@@ -183,8 +183,6 @@ if vim.g.vscode then
   -- Require the VSCode API module
   local vscode = require('vscode')
 
-  vim.keymap.set('n', 'mw', 'mciw*<Cmd>nohl<CR>', { remap = true })
-
   -- Map <leader>e to toggle the Explorer view
   vim.keymap.set('n', '<leader>e', function()
     vscode.call('workbench.view.explorer')
@@ -310,13 +308,6 @@ require('lazy').setup({
     end,
     -- "nvim-treesitter/playground", -- ← This installs the playground module
   },
-  {
-    'vscode-neovim/vscode-multi-cursor.nvim',
-    event = 'VeryLazy',
-    cond = not not vim.g.vscode,
-    opts = {},
-  }
-
 
 })
 
