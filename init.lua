@@ -163,9 +163,6 @@ vim.opt.scrolloff = 15
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
 -- helper keymaps
 vim.keymap.set('n', '<leader>o', 'o<Esc>')
 vim.keymap.set('n', '<leader>O', 'O<Esc>')
@@ -182,11 +179,29 @@ vim.keymap.set('i', 'jj', '<Esc>', { noremap = false })
 if vim.g.vscode then
   -- Require the VSCode API module
   local vscode = require('vscode')
+  local opts = { noremap = true, silent = true }
 
-  -- Map <leader>e to toggle the Explorer view
-  vim.keymap.set('n', '<leader>e', function()
-    vscode.call('workbench.view.explorer')
-  end, { noremap = true, silent = true })
+  local mappings = {
+    -- {mode, command, vscodeAction}
+    { 'n', 'gi',         'editor.action.goToImplementation' },
+    { 'n', 'gs',         'workbench.action.gotoSymbol' },
+    { 'n', 'gR',         'editor.action.referenceSearch.trigger' },
+    { 'n', 'gI',         'editor.action.peekImplementation' },
+    { 'n', '<leader>ss', 'workbench.action.showAllSymbols' },
+    { 'n', '<leader>rf', 'editor.action.refactor' },
+    { 'n', '<leader>sf', 'workbench.action.quickOpen' },
+    { 'n', '<leader>sb', 'actions.find' },
+    { 'n', '<leader>sr', 'editor.action.startFindReplaceAction' },
+    { 'n', '<leader>fg', 'workbench.action.findInFiles' },
+    { 'n', '<leader>qf', 'editor.action.quickFix' },
+    { 'n', '<leader>en', 'editor.action.marker.next' },
+    { 'n', '<leader>eN', 'editor.action.marker.prev' },
+  }
+
+  for _, mapping in ipairs(mappings) do
+    local mode, command, action = mapping[1], mapping[2], mapping[3]
+    vim.keymap.set(mode, command, function() vscode.call(action) end, opts)
+  end
 end
 
 
