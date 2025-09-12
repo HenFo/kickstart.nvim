@@ -206,6 +206,8 @@ if vim.g.vscode then
     local mode, command, action = mapping[1], mapping[2], mapping[3]
     vim.keymap.set(mode, command, function() vscode.call(action) end, opts)
   end
+
+  vim.keymap.set('n', 'mw', 'mciw*<Cmd>nohl<CR>', { remap = true })
 end
 
 
@@ -327,6 +329,13 @@ require('lazy').setup({
     end,
     -- "nvim-treesitter/playground", -- ← This installs the playground module
   },
+  {
+    'vscode-neovim/vscode-multi-cursor.nvim',
+    event = 'VeryLazy',
+    cond = not not vim.g.vscode,
+    opts = {},
+  }
+
 
 })
 
