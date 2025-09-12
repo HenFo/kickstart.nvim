@@ -169,6 +169,10 @@ vim.keymap.set('n', '<leader>O', 'O<Esc>')
 vim.keymap.set({ 'n', 'x' }, '<leader>h', '^')
 vim.keymap.set({ 'n', 'x' }, '<leader>l', 'g_')
 
+-- Open config file
+vim.keymap.set('n', '<leader>co', '<cmd>edit ' .. vim.fn.stdpath('config') .. '/init.lua<CR>',
+  { desc = 'Open init.lua config' })
+
 -- disable s key so that it doesn't initiate insert mode
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 -- activate surround with capital S in visual mode
