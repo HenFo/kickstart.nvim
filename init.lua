@@ -169,6 +169,10 @@ vim.keymap.set('n', '<leader>O', 'O<Esc>')
 vim.keymap.set({ 'n', 'x' }, '<leader>h', '^')
 vim.keymap.set({ 'n', 'x' }, '<leader>l', 'g_')
 
+-- Jump to mark
+vim.keymap.set('n', '<leader>m', '`', { desc = 'Jump to mark' })
+
+
 -- Open config file
 vim.keymap.set('n', '<leader>co', '<cmd>edit ' .. vim.fn.stdpath('config') .. '/init.lua<CR>',
   { desc = 'Open init.lua config' })
@@ -191,12 +195,12 @@ if vim.g.vscode then
     { 'n', 'gs',         'workbench.action.gotoSymbol' },
     { 'n', 'gR',         'editor.action.referenceSearch.trigger' },
     { 'n', 'gI',         'editor.action.peekImplementation' },
-    { 'n', '<leader>ss', 'workbench.action.showAllSymbols' },
+    { 'n', 'gS',         'workbench.action.showAllSymbols' },
     { 'n', '<leader>rf', 'editor.action.refactor' },
     { 'n', '<leader>sf', 'workbench.action.quickOpen' },
-    { 'n', '<leader>sb', 'actions.find' },
-    { 'n', '<leader>sr', 'editor.action.startFindReplaceAction' },
-    { 'n', '<leader>fg', 'workbench.action.findInFiles' },
+    { 'n', '<leader>fb', 'actions.find' },
+    { 'n', '<leader>fr', 'editor.action.startFindReplaceAction' },
+    { 'n', '<leader>ff', 'workbench.action.findInFiles' },
     { 'n', '<leader>qf', 'editor.action.quickFix' },
     { 'n', '<leader>en', 'editor.action.marker.next' },
     { 'n', '<leader>eN', 'editor.action.marker.prev' },
@@ -206,8 +210,6 @@ if vim.g.vscode then
     local mode, command, action = mapping[1], mapping[2], mapping[3]
     vim.keymap.set(mode, command, function() vscode.call(action) end, opts)
   end
-
-  vim.keymap.set('n', 'mw', 'mciw*<Cmd>nohl<CR>', { remap = true })
 end
 
 
@@ -333,7 +335,31 @@ require('lazy').setup({
     'vscode-neovim/vscode-multi-cursor.nvim',
     event = 'VeryLazy',
     cond = not not vim.g.vscode,
-    opts = {},
+    opts = {
+      -- Disable default mappings to use custom ones
+      default_mappings = false,
+      no_selection = false,
+    },
+    config = function()
+      local cursors = require('vscode-multi-cursor')
+
+      -- Custom mappings with capital M
+      vim.keymap.set({ 'n', 'x' }, 'Mc', cursors.create_cursor, { expr = true, desc = 'Create cursor' })
+      vim.keymap.set({ 'n', 'x' }, 'Mi', cursors.start_left, { desc = 'Start cursors on the left' })
+      vim.keymap.set({ 'n', 'x' }, 'MI', cursors.start_left_edge, { desc = 'Start cursors on the left edge' })
+      vim.keymap.set({ 'n', 'x' }, 'Ma', cursors.start_right, { desc = 'Start cursors on the right' })
+      vim.keymap.set({ 'n', 'x' }, 'MA', cursors.start_right, { desc = 'Start cursors on the right' })
+
+      -- VSCode wrapped commands
+      vim.keymap.set({ 'n', 'x' }, 'Ms', cursors.selectHighlights, { desc = 'Select all highlights' })
+      vim.keymap.set('n', 'Mw', 'Mciw*<Cmd>nohl<CR>', { remap = true })
+
+      -- Clear cursors with Escape
+      vim.keymap.set('n', '<Esc>', function()
+        cursors.cancel()
+        vim.cmd('nohlsearch')
+      end, { desc = 'Clear cursors and search highlights' })
+    end,
   }
 
 
