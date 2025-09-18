@@ -187,19 +187,19 @@ if vim.g.vscode then
 
   local mappings = {
     -- {mode, command, vscodeAction}
-    { 'n', 'gi',         'editor.action.goToImplementation' },
-    { 'n', 'gs',         'workbench.action.gotoSymbol' },
-    { 'n', 'gR',         'editor.action.referenceSearch.trigger' },
-    { 'n', 'gI',         'editor.action.peekImplementation' },
-    { 'n', 'gS',         'workbench.action.showAllSymbols' },
-    { 'n', '<leader>rf', 'editor.action.refactor' },
-    { 'n', '<leader>sf', 'workbench.action.quickOpen' },
-    { 'n', '<leader>fb', 'actions.find' },
-    { 'n', '<leader>fr', 'editor.action.startFindReplaceAction' },
-    { 'n', '<leader>ff', 'workbench.action.findInFiles' },
-    { 'n', '<leader>qf', 'editor.action.quickFix' },
-    { 'n', '<leader>en', 'editor.action.marker.next' },
-    { 'n', '<leader>eN', 'editor.action.marker.prev' },
+    { 'n', 'gi',          'editor.action.goToImplementation' },
+    { 'n', 'gs',          'workbench.action.gotoSymbol' },
+    { 'n', 'gR',          'editor.action.referenceSearch.trigger' },
+    { 'n', 'gI',          'editor.action.peekImplementation' },
+    { 'n', 'gS',          'workbench.action.showAllSymbols' },
+    { 'n', '<leader>rf',  'editor.action.refactor' },
+    { 'n', '<leader>ff',  'workbench.action.quickOpen' },
+    { 'n', '<leader>fif', 'actions.find' },
+    { 'n', '<leader>fr',  'editor.action.startFindReplaceAction' },
+    { 'n', '<leader>faf', 'workbench.action.findInFiles' },
+    { 'n', '<leader>qf',  'editor.action.quickFix' },
+    { 'n', '<leader>en',  'editor.action.marker.next' },
+    { 'n', '<leader>eN',  'editor.action.marker.prev' },
   }
 
   for _, mapping in ipairs(mappings) do
