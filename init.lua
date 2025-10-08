@@ -164,8 +164,8 @@ vim.opt.scrolloff = 15
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- helper keymaps
-vim.keymap.set('n', '<leader>o', 'o<Esc>')
-vim.keymap.set('n', '<leader>O', 'O<Esc>')
+vim.keymap.set('n', '<leader>o', 'mzo<Esc>`z')
+vim.keymap.set('n', '<leader>O', 'mzO<Esc>`z')
 vim.keymap.set({ 'n', 'x' }, '<leader>h', '^')
 vim.keymap.set({ 'n', 'x' }, '<leader>l', 'g_')
 
