@@ -173,10 +173,6 @@ vim.keymap.set({ 'n', 'x' }, '<leader>l', 'g_')
 vim.keymap.set('n', '<leader>m', '`', { desc = 'Jump to mark' })
 
 
--- Open config file
-vim.keymap.set('n', '<leader>co', '<cmd>edit ' .. vim.fn.stdpath('config') .. '/init.lua<CR>',
-  { desc = 'Open init.lua config' })
-
 -- disable s key so that it doesn't initiate insert mode
 vim.keymap.set({ 'n', 'x' }, 's', '<Nop>')
 -- activate surround with capital S in visual mode
@@ -191,6 +187,7 @@ if vim.g.vscode then
 
   local mappings = {
     -- {mode, command, vscodeAction}
+    { 'n', 'gD',         'editor.action.revealDefinitionAside' },
     { 'n', 'gi',          'editor.action.goToImplementation' },
     { 'n', 'gs',          'workbench.action.gotoSymbol' },
     { 'n', 'gR',          'editor.action.referenceSearch.trigger' },
@@ -206,12 +203,21 @@ if vim.g.vscode then
     { 'n', '<leader>Ne',  'editor.action.marker.prev' },
     { 'n', '<leader>rt',  'workbench.action.tasks.runTask' },
     { 'n', '<leader>ex',  'workbench.files.action.showActiveFileInExplorer' },
+    { 'n', '<leader>c',  'workbench.action.closeActiveEditor' },
   }
 
   for _, mapping in ipairs(mappings) do
     local mode, command, action = mapping[1], mapping[2], mapping[3]
     vim.keymap.set(mode, command, function() vscode.call(action) end, opts)
   end
+
+  -- Custom function to close all editors and show last file in explorer
+  vim.keymap.set('n', '<leader>C', function()
+    vscode.call('workbench.files.action.showActiveFileInExplorer')
+    vim.defer_fn(function()
+      vscode.call('workbench.action.closeAllEditors')
+    end, 100)
+  end, { noremap = true, silent = true, desc = 'Close all editors and show in explorer' })
 end
 
 
